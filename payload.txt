@@ -1,1 +1,106 @@
+const petpoojaPayload =     {
+        "app_key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "app_secret": "xxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "access_token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "orderinfo": {
+            "OrderInfo": {
+                "Restaurant": {
+                    "details": {
+                    "res_name": "CYC FOOD",
+                    "address": "2nd Floor, Reliance Mall, Nr.Akshar Chowk",
+                    "contact_information": "9427846660",
+                    "restID": "emx940d3"
+                    }
+                },
+            "Customer": {
+                "details": {
+                "email": "",
+                "name": name,
+                "address": "",
+                "phone": phone,
+                "latitude": "34.11752681212772",
+                "longitude": "74.72949172653219"
+                }
+            },
+            "Order": {
+                "details": {
+                "orderID": data[0].id,
+                "preorder_date": "2025-12-12",
+                "preorder_time": "15:50:00",
+                "delivery_time" : "2025-12-17T12:00:00",
+                "service_charge": "0",
+                "sc_tax_amount": "0",
+                "delivery_charges": "0",
+                "dc_tax_percentage": "0",
+                "dc_tax_amount": "0",
+                "dc_gst_details": [
+                   
+                ],
+                "packing_charges": "0",
+                "pc_tax_amount": "0",
+                "pc_tax_percentage": "0",
+                "pc_gst_details": [
+                    
+                ],
+                "order_type": "H",
+                "ondc_bap" : "buyerAppName",
+                "advanced_order": "N",
+                "urgent_order": false,
+                "urgent_time" : 20,
+                "payment_type": "COD",
+                "table_no": "",
+                "no_of_persons": "0",
+                "discount_total": discount_total,
+                "tax_total": "",
+                "discount_type": "F",
+                "total": totals.price - discount_total,
+                "description": "",
+                "created_on": "2022-01-01 15:49:00",
+                "enable_delivery": 1,
+                "min_prep_time": 20,
+                "callback_url": "https://yparjubvkbeytnffqnpv.supabase.co/functions/v1/api-callback",
+                'Authorization': 'Bearer 7ffd7e6da67afa84c712fd9ff8a304b6efe97f5e',
+                "collect_cash": "",
+                "otp": ""
+                }
+            },
+           OrderItem: {
+  details: cartList.map(item => {
+    // Calculate item tax dynamically (2.5% each for CGST and SGST)
+    const taxRate = 2.5;
+    const taxAmount = ((item.price * taxRate) / 100).toFixed(2);
+    const finalPrice = (item.price * (cart[item.id] || 1)).toFixed(2);
+    const discount = ''; // Add discount logic if needed
 
+    return {
+      id: item.id,
+      name: item.title,
+      tax_inclusive: true,
+      gst_liability: 'vendor',
+      item_tax: [
+      ],
+      item_discount: discount,
+      price: item.price.toFixed(2),
+      final_price: finalPrice,
+      quantity: cart[item.id] || 1,
+      description: '',
+      variation_name: item?.variation_name,
+      AddonItem: item?.addons
+      
+    };
+  })
+},
+
+            "Tax": {
+                
+            },
+            "Discount": {
+                "details": [
+               
+                ]
+            }
+        },
+        "udid": "2323232",
+        "device_type": "Web"
+        }
+    };
